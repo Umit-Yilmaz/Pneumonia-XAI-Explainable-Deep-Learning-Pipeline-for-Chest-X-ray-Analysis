@@ -1,0 +1,80 @@
+# Custom CNN Configuration
+# ========================
+
+model:
+  name: CustomCNN
+  input_size: 224
+  channels: 3
+  num_classes: 1
+  
+  # Architecture
+  conv_blocks: 5
+  filters: [32, 64, 128, 128, 256]
+  kernel_size: 3
+  pool_size: 2
+  dropout: [0.3, 0.3, 0.4, 0.4, 0.5]
+  
+  # Classifier
+  fc_units: [512, 256]
+  activation: relu
+  output_activation: sigmoid
+
+training:
+  optimizer: adam
+  learning_rate: 0.001
+  batch_size: 32
+  epochs: 50
+  loss: binary_crossentropy
+  
+  # Callbacks
+  early_stopping:
+    monitor: val_loss
+    patience: 5
+    restore_best_weights: true
+  
+  reduce_lr:
+    monitor: val_loss
+    factor: 0.1
+    patience: 3
+    min_lr: 0.00001
+
+  seed: 42
+
+data:
+  train_path: data/cnn-normalized/train
+  val_path: data/cnn-normalized/val
+  test_path: data/cnn-normalized/test
+  normalization: divide_255
+
+metrics:
+  - accuracy
+  - precision
+  - recall
+  - f1
+  - roc_auc
+
+explainability:
+  enabled: true
+  method: gradcam
+  target_layer: conv_block_5
+  
+  num_samples_per_category: 5
+  
+  selection_strategy:
+    - true_positive
+    - true_negative
+    - false_positive
+    - false_negative
+  
+  confidence_threshold:
+    high: 0.9
+    low: 0.6
+  
+  save_individual: true
+  save_overlay: true
+
+results:
+  logs_dir: results/logs
+  figures_dir: results/figures
+  tables_dir: results/tables
+  models_dir: results/models

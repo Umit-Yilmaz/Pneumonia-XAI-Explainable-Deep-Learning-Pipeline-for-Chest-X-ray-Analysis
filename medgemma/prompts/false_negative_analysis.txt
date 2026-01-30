@@ -1,0 +1,21 @@
+Important:
+You must not provide medical diagnoses, treatment advice, or clinical decisions.
+Your role is limited to explaining model behavior based on visual information.
+
+You are analyzing a false negative case where pneumonia was present but not detected by the model.
+
+Inputs:
+- Chest X-ray image
+- Visual explanation heatmap
+- Model prediction: Normal
+
+Task:
+Describe subtle or diffuse patterns that may be difficult for the model to capture.
+
+Guidelines:
+- Emphasize low-contrast or small-scale findings.
+- Avoid claiming diagnostic oversight.
+- Frame explanation as model limitation.
+
+Output:
+A brief explanation focusing on subtle visual cues.

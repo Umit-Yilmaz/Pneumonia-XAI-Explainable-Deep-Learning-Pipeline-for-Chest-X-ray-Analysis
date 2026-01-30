@@ -1,0 +1,68 @@
+# DenseNet Test Configuration (Minimal)
+model:
+  name: DenseNet121
+  input_size: 224
+  channels: 3
+  num_classes: 1
+  pretrained: imagenet
+  finetune_from: denseblock4
+  fc_units: [64]
+  dropout: 0.3
+
+
+training:
+  optimizer: adam
+  batch_size: 2
+  epochs: 2
+  loss: binary_crossentropy
+  early_stopping:
+    monitor: val_loss
+    patience: 2
+    restore_best_weights: true
+  reduce_lr:
+    monitor: val_loss
+    factor: 0.5
+    patience: 1
+    min_lr: 0.00001
+  seed: 42
+
+metrics:
+  - accuracy
+  - roc_auc
+
+explainability:
+  enabled: true
+  num_samples_per_category: 1
+  selection_strategy:
+    - true_positive
+  confidence_threshold:
+    high: 0.9
+    low: 0.6
+  save_individual: true
+  save_overlay: true
+
+results:
+  logs_dir: results/test_logs
+  figures_dir: results/test_figures
+  tables_dir: results/test_tables
+  models_dir: results/test_models
+
+  learning_rate: 0.0001
+
+data:
+  train_path: C:\Users\linux\Desktop\UYSM\pneumonia-xai\data\test-other/train
+  val_path: C:\Users\linux\Desktop\UYSM\pneumonia-xai\data\test-other/val
+  test_path: C:\Users\linux\Desktop\UYSM\pneumonia-xai\data\test-other/test
+  normalization: imagenet
+
+explainability:
+  enabled: true
+  method: gradcam
+  num_samples_per_category: 1
+  selection_strategy:
+    - true_positive
+  confidence_threshold:
+    high: 0.9
+    low: 0.6
+  save_individual: true
+  save_overlay: true
