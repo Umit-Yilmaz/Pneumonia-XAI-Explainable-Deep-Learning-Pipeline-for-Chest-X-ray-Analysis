@@ -145,6 +145,9 @@ Separate normalized datasets are maintained for:
 
 ## Pipeline Overview
 
+<img width="8191" height="2567" alt="flow-chart" src="https://github.com/user-attachments/assets/88c8b8bd-e001-4b55-a8bc-55b50e0bd3e5" />
+
+
 When running `main.py`, the following steps are executed sequentially for each model:
 
 1. Load configuration file
