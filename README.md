@@ -168,10 +168,11 @@ When running `main.py`, the following steps are executed sequentially for each m
 The pipeline generates visual explanations to interpret model decisions. Below are examples of XAI outputs:
 
 ### Model Interpretability (Custom CNN)
-![Custom CNN Explainability](results/test_figures/CustomCNN_test_xai.png)
+<img width="1762" height="608" alt="CustomCNN_test_xai" src="https://github.com/user-attachments/assets/e748d2b5-8e3b-4b94-8ee4-15fe75f1aec6" />
+
 
 ### Grad-CAM Saliency Map
-![Grad-CAM Comparison](results/test_figures/test_true_positive_gradcam.png)
+<img width="1762" height="608" alt="test_true_positive_gradcam" src="https://github.com/user-attachments/assets/7aa61e81-0abe-4c29-8183-d11d70b33626" />
 
 ---
 
