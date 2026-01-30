@@ -29,6 +29,9 @@ wheels/
 # Project specific
 data/
 results/
+# Allow images for README
+!results/test_figures/CustomCNN_test_xai.png
+!results/test_figures/test_true_positive_gradcam.png
 .ipynb_checkpoints/
 .vscode/
 .idea/
