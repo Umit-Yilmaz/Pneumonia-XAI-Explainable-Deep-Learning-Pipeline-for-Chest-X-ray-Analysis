@@ -141,6 +141,12 @@ Separate normalized datasets are maintained for:
 | DenseNet121 | ImageNet     | 1e-4          | 32         | Grad-CAM          |
 | ViT-B/16    | ImageNet-21k | 3e-5          | 16         | Attention Rollout |
 
+### Training Strategies
+
+1. **Custom CNN**: Trained from scratch with a 5-block architecture. Uses progressive filters (32→256), BatchNorm, and Dropout to learn features directly from the pneumonia dataset.
+2. **ResNet50 & DenseNet121**: Partial fine-tuning approach. The early layers (blocks 0-2 for ResNet) are frozen to retain general ImageNet features, while later blocks are fine-tuned to adapt to radiological patterns.
+3. **Vision Transformer (ViT)**: Full fine-tuning from ImageNet-21k weights with a lower learning rate (3e-5) to maintain the stability of self-attention mechanisms during adaptation.
+4. **Early Stopping & LR Scheduling**: All models employ `EarlyStopping` (patience=5) and `ReduceLROnPlateau` to ensure convergence and prevent overfitting.
 ---
 
 ## Pipeline Overview
