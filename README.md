@@ -143,10 +143,14 @@ Separate normalized datasets are maintained for:
 
 ### Training Strategies
 
-1. **Custom CNN**: Trained from scratch with a 5-block architecture. Uses progressive filters (32→256), BatchNorm, and Dropout to learn features directly from the pneumonia dataset.
-2. **ResNet50 & DenseNet121**: Partial fine-tuning approach. The early layers (blocks 0-2 for ResNet) are frozen to retain general ImageNet features, while later blocks are fine-tuned to adapt to radiological patterns.
-3. **Vision Transformer (ViT)**: Full fine-tuning from ImageNet-21k weights with a lower learning rate (3e-5) to maintain the stability of self-attention mechanisms during adaptation.
-4. **Early Stopping & LR Scheduling**: All models employ `EarlyStopping` (patience=5) and `ReduceLROnPlateau` to ensure convergence and prevent overfitting.
+Custom CNN: Trained from scratch using a 5-block convolutional architecture with progressively increasing filter sizes (32→256), Batch Normalization, and Dropout, allowing the model to learn task-specific features directly from the pneumonia dataset.
+
+ResNet50 & DenseNet121: Transfer learning strategy using ImageNet-pretrained backbones as fixed feature extractors. All backbone layers were frozen, and only the final classification layers were trained to mitigate overfitting given the limited size of medical imaging data.
+
+Vision Transformer (ViT): ImageNet-pretrained ViT model employed with frozen transformer blocks, where only the classification head was trained to ensure stable attention-based representations and consistent explainability.
+
+Early Stopping & Learning Rate Scheduling: Early stopping and learning rate scheduling mechanisms were applied during training to improve convergence and reduce overfitting, depending on model configuration.
+
 ---
 
 ## Pipeline Overview
